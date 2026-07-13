@@ -9,7 +9,7 @@ export const company = {
   cep: '85010-190',
   neighborhood: 'Centro',
   // Preencha com seus dados reais de contato:
-  email: 'contato@seudominio.com.br',
+  email: 'lucasschupchek@gmail.com',
   whatsapp: '', // ex.: '5542999999999' (só números, com DDI 55) — deixe vazio para ocultar o botão
   since: '2026',
 }
