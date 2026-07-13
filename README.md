@@ -26,6 +26,48 @@ Basta editar esse arquivo — o site inteiro é atualizado.
 
 > Preencha `email` e `whatsapp` com seus contatos reais antes de publicar.
 
+## Deploy no GitHub Pages (grátis, sem comprar domínio)
+
+> Use o formato **site de usuário** para ter uma URL limpa na raiz:
+> crie um repositório com o nome exato **`SEU-USUARIO.github.io`**.
+> Assim o site fica em `https://SEU-USUARIO.github.io` (melhor para o Meta
+> aceitar como domínio seu).
+
+1. Crie o repositório `SEU-USUARIO.github.io` no GitHub e suba este projeto:
+   ```bash
+   git init
+   git add .
+   git commit -m "site institucional"
+   git branch -M main
+   git remote add origin https://github.com/SEU-USUARIO/SEU-USUARIO.github.io.git
+   git push -u origin main
+   ```
+2. No GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+3. O workflow em `.github/workflows/deploy.yml` faz o build e publica automaticamente
+   a cada push. Ele também copia `index.html` para `404.html`, então `/termos` e
+   `/privacidade` funcionam mesmo com refresh.
+
+> Se preferir um repositório com outro nome (site de projeto, URL
+> `SEU-USUARIO.github.io/repo`), adicione `base: '/repo/'` no `vite.config.js`.
+
+## Verificar o domínio no Meta (método meta tag)
+
+1. No **Meta Business** → Configurações do negócio → Segurança da marca →
+   **Domínios** → Adicione `SEU-USUARIO.github.io`.
+2. Escolha o método **Meta-tag** (NÃO use o método DNS — não funciona em
+   domínio compartilhado).
+3. Copie a tag fornecida e cole no `index.html`, no espaço já marcado dentro do
+   `<head>` (descomente e troque o `content`):
+   ```html
+   <meta name="facebook-domain-verification" content="SEU_CODIGO_AQUI" />
+   ```
+4. Dê `git push` (o deploy roda sozinho), aguarde ~1 min e clique em **Verificar**
+   no Meta.
+
+> ⚠️ O Meta pode recusar subdomínios grátis. Se recusar mesmo com a meta tag,
+> a única solução confiável é usar um domínio próprio (ex.: um `.com.br` no
+> Registro.br, ~R$40/ano). A hospedagem no GitHub Pages continua grátis.
+
 ## Deploy na Vercel
 
 1. Suba este projeto para um repositório (GitHub/GitLab/Bitbucket) **ou** use a CLI:
